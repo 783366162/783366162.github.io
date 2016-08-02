@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="黄家斌" />
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="支付宝集成流程">
+<meta property="og:url" content="http://huangjiabin.com.cn/2016/04/07/支付宝集成流程/index.html">
+<meta property="og:site_name" content="hjb_iOS的博客">
+<meta property="og:updated_time" content="2016-08-02T14:55:44.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="支付宝集成流程">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="hjb_iOS的博客" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>支付宝集成流程 | hjb_iOS的博客</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: undefined
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/12345.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">黄家斌</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">醒着就要拼，爱拼才会赢！</p>
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:hjbios@163.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" href="/sina weibo" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" href="#" title="GitHub"></a>
+                            
+                                <a class="fa 知乎" href="/zhihu" title="知乎"></a>
+                            
+                                <a class="fa 简书" href="/jianshu" title="简书"></a>
+                            
+                                <a class="fa 博客园" href="/cnblogs" title="博客园"></a>
+                            
+                                <a class="fa CSDN" href="/" title="CSDN"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://github.com/">GitHub</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">自信而不狂妄，成熟而充满朝气，对待事物有敏锐的独见行和洞察力，工作耐心刻苦，责任心强，待人真诚有礼貌，环境适应能力强，这就是我，一个愿意把最好的一面展示出来的我！</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">黄家斌</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/12345.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">黄家斌</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">醒着就要拼，爱拼才会赢！</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:hjbios@163.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="/sina weibo" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="#" title="GitHub"></a>
+                            
+                                <a class="fa 知乎" target="_blank" href="/zhihu" title="知乎"></a>
+                            
+                                <a class="fa 简书" target="_blank" href="/jianshu" title="简书"></a>
+                            
+                                <a class="fa 博客园" target="_blank" href="/cnblogs" title="博客园"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="/" title="CSDN"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-支付宝集成流程" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/04/07/支付宝集成流程/" class="article-date">
+      <time datetime="2016-04-07T14:31:18.000Z" itemprop="datePublished">2016-04-07</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      支付宝集成流程
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p><excerpt in="" index="" |="" 首页摘要=""><br><a id="more"></a></excerpt></p>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+
+<p>#什么是 GCD<br>全称是 Grand Central Dispatch<br>纯 C语言, 提供了非常强大的函数<br>GCD 的优势<br>GCD 是苹果公司为多核的并发运算提出的解决方案<br>GCD 会自动利用更多的 CPU 内核(比如双核, 四核)<br>GCD 会自动管理线程的生命周期, (创建线程, 调度任务, 销毁线程)<br>程序员只需要告诉 GCD 需要执行什么任务, 不需要编写任何线程管理代码<br>任务和队列<br>GCD 中有两个核心概念<br>任务: 执行什么操作<br>队列: 用来仿什么任务<br>GCD 使用的两个步骤<br>定制任务</p>
+<p>###确定想要做的事情讲任务添加到队列中</p>
+<p>GCD 会自动将队列中的任务取出, 放到对应的线程中执行<br>任务的取出遵循队列的 FIFO 原则: 先进先出, 后进后出<br>执行任务<br>GCD 中有两个用来执行任务的常用函数<br>用同步的方式执行任务<br>dispatch_sync(dispatch_queue_t queue, ^{<br>        // block 内容<br>    });<br>queue: 队列<br>bolck: 任务</p>
+<p>用异步方式来执行<br>dispatch_async(dispatch_queue_t queue, ^{<br>        // block 内容<br>    });<br>同步和异步的区别</p>
+<p>同步: 只能在当前线程中执行任务, 不具备开新启线程的能力<br>异步: 可以在新的线程中执行任务, 具备开启新线程的能力<br>队列的类型<br>并发队列(Concurrent Dispatch Queue)<br>概念:</p>
+<p>可以让多个任务并发(同时)执行(自动开启多个线程同时执行任务)<br>并发功能只有在异步(dispatch_async)函数下才有效<br>创建方法:</p>
+<p>dispatch_queue_t queue = dispatch_queue_create(“abc”, DISPATCH_QUEUE_CONCURRENT);<br>因为 GCD 默认已经提供了全局并发队列, 供整个应用使用, 也可以直接获取</p>
+<p>dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);<br>// 第一个参数是队列优先级, 第二个参数一般都是0, 没什么用<br>串行队列(Serial Dispatch Queue)<br>概念:</p>
+<p>让任务一个接着一个的执行 (一个任务执行完毕再执行下一个任务)<br>创建方式:</p>
+<p>// 第二个队列类型可以传 NULL 或者 DISPATCH_QUEUE_SERIAL 效果是一样的<br>dispatch_queue_t queue = dispatch_queue_create(“abc”, DISPATCH_QUEUE_SERIAL);<br>还可以使用主队列, 也就是跟主线程想关联的队列</p>
+<p>主队列是 GCD 自带的一种特殊串行队列<br>放在主队列中的任务, 多会放到主线程中执行<br>使用dispatch_get_main_queue()获得主队列<br>容易混淆的术语<br>在 GCD 使用的时候有4个概念比较容易混淆: 同步 - 异步 - 并发 - 串行</p>
+<p>同步和异步主要影响: 能不能开启新线程</p>
+<p>同步: 只是在当前线程中执行任务, 不具备开启新线程的能力<br>异步: 可以在新的线程中执行任务, 具备开启新线程的能力<br>并发和串行主要影响: 任务的执行方式</p>
+<p>并发: 允许多个任务并发执行<br>串行: 一个任务执行完毕, 才去执行下一个任务<br>GCD 的基本使用<br>同步函数和并发队列<br>直接上代码</p>
+<ul>
+<li><p>(void)syncConcurrent {</p>
+<p>  // 创建队列<br>  /<em><br>   第一个参数: C语言的字符串,标签<br>   第二个参数: 队列的类型
+   </em>/<br>  dispatch_queue_t queue = dispatch_queue_create(“download”, DISPATCH_QUEUE_CONCURRENT);</p>
+<p>  // 定制任务(多任务)<br>  dispatch_sync(queue, ^{</p>
+<pre><code>NSLog(@&quot;download1- %@&quot;, [NSThread currentThread]);
+</code></pre><p>  });</p>
+<p>  dispatch_sync(queue, ^{</p>
+<pre><code>NSLog(@&quot;download2- %@&quot;, [NSThread currentThread]);
+</code></pre><p>  });</p>
+<p>  dispatch_sync(queue, ^{</p>
+<pre><code>NSLog(@&quot;download3- %@&quot;, [NSThread currentThread]);
+</code></pre><p>  });<br>}<br>打印结果:</p>
+</li>
+</ul>
+<p>2016-07-28 11:14:52.766 GCD[18620:1367714] download1- <nsthread: 0x7f9ee8e014b0="">{number = 1, name = main}<br>2016-07-28 11:14:52.767 GCD[18620:1367714] download2- <nsthread: 0x7f9ee8e014b0="">{number = 1, name = main}<br>2016-07-28 11:14:52.770 GCD[18620:1367714] download3- <nsthread: 0x7f9ee8e014b0="">{number = 1, name = main}<br>同步函数是不会开启子线程的, 所有任务都是在主线程中串行执行的.</nsthread:></nsthread:></nsthread:></p>
+<p>同步函数和串行队列<br>代码:</p>
+<ul>
+<li><p>(void)syncSerial {</p>
+<p>  dispatch_queue_t queue = dispatch_queue_create(“download”, DISPATCH_QUEUE_SERIAL);</p>
+<p>  dispatch_sync(queue, ^{</p>
+<pre><code>NSLog(@&quot;download1- %@&quot;, [NSThread currentThread]);
+</code></pre><p>  });</p>
+<p>  dispatch_sync(queue, ^{</p>
+<pre><code>NSLog(@&quot;download2- %@&quot;, [NSThread currentThread]);
+</code></pre><p>  });</p>
+<p>  dispatch_sync(queue, ^{</p>
+<pre><code>NSLog(@&quot;download3- %@&quot;, [NSThread currentThread]);
+</code></pre><p>  });</p>
+</li>
+</ul>
+<p>}<br>打印结果:</p>
+<p>2016-07-28 11:18:56.510 GCD[18829:1370325] download1- <nsthread: 0x7fe08bf00af0="">{number = 1, name = main}<br>2016-07-28 11:18:56.511 GCD[18829:1370325] download2- <nsthread: 0x7fe08bf00af0="">{number = 1, name = main}<br>2016-07-28 11:18:56.513 GCD[18829:1370325] download3- <nsthread: 0x7fe08bf00af0="">{number = 1, name = main}<br>同样, 此时也是不会创建子线程的, 所有任务是在主线程中也是串行执行, 和同步函数和并发队列时候是一样的效果.</nsthread:></nsthread:></nsthread:></p>
+<p>同步函数和主队列<br>这个就有点特殊了, 为了看效果, 在方法里面加上开始和结束的代码:</p>
+<ul>
+<li><p>(void)syncMain {</p>
+<p>  NSLog(@”—start—“);</p>
+<p>  dispatch_queue_t queue = dispatch_get_main_queue();</p>
+<p>  dispatch_sync(queue, ^{</p>
+<pre><code>NSLog(@&quot;download1- %@&quot;, [NSThread currentThread]);
+</code></pre><p>  });</p>
+<p>  dispatch_sync(queue, ^{</p>
+<pre><code>NSLog(@&quot;download2- %@&quot;, [NSThread currentThread]);
+</code></pre><p>  });</p>
+<p>  dispatch_sync(queue, ^{</p>
+<pre><code>NSLog(@&quot;download3- %@&quot;, [NSThread currentThread]);
+</code></pre><p>  });</p>
+<p>  NSLog(@”—end—“);</p>
+</li>
+</ul>
+<p>}<br>打印结果:</p>
+<p>2016-07-28 12:02:20.473 GCD[21183:1395248] —start—<br>并没有打印结束语句, 说明任务也没有执行,这是怎么回事呢?</p>
+<p>这是因为主列发中的任务都是在主线程中执行, 当主队列发现当前主线程有任务在执行, 那主队列会暂定调用对队列中的任务,直到主线程空闲为止.<br>简单点说, 就是主线程发现有任务, 就要让主线程去执行任务, 但此时的主线程却在等待这任务执行完毕, 不是空闲状态, 所以主线程无法执行任务, 形成死锁. 而同步函数又要求任务要立刻马上按顺序执行, 所以第一个任务执行不了, 后面的当然也执行不了 , 就卡在了那里.<br>那有没有办法让同步函数和主队列中的任务执行呢? 当然可以, 只是需要把这个方法放到子线程中去, 看代码:</p>
+<p>[NSThread detachNewThreadSelector:@selector(syncMain) toTarget:self withObject:nil];<br>这个时候再看执行结果:</p>
+<p>2016-07-28 12:17:01.477 GCD[21971:1403347] —start—<br>2016-07-28 12:17:01.481 GCD[21971:1403123] download1- <nsthread: 0x7fca2bc02470="">{number = 1, name = main}<br>2016-07-28 12:17:01.500 GCD[21971:1403123] download2- <nsthread: 0x7fca2bc02470="">{number = 1, name = main}<br>2016-07-28 12:17:01.503 GCD[21971:1403123] download3- <nsthread: 0x7fca2bc02470="">{number = 1, name = main}<br>2016-07-28 12:17:01.504 GCD[21971:1403347] —end—<br>发现已经全部执行完毕了, 而且是在主线程中执行的. 这是因为我们是开启的子线程来调用方法, 此时的主线程是空闲的, 然后方法中的任务需要在主线程中执行, 就没有问题了.</nsthread:></nsthread:></nsthread:></p>
+<p>异步函数和并发队列<br>定制三个任务, 看执行效果</p>
+<ul>
+<li><p>(void)asyncConcurrent {</p>
+<p>  dispatch_queue_t queue = dispatch_queue_create(“download”, DISPATCH_QUEUE_CONCURRENT);</p>
+<p> // 也可以获取全局并发队列,执行效果是一样的<br>  // dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);</p>
+</li>
+</ul>
+<pre><code>dispatch_async(queue, ^{
+
+    NSLog(@&quot;download1- %@&quot;, [NSThread currentThread]);
+
+});
+dispatch_async(queue, ^{
+
+    NSLog(@&quot;download2- %@&quot;, [NSThread currentThread]);
+
+});
+dispatch_async(queue, ^{
+
+    NSLog(@&quot;download3- %@&quot;, [NSThread currentThread]);
+
+});
+</code></pre><p>}<br>打印结果:</p>
+<p>2016-07-28 10:58:05.941 GCD[17694:1357547] download1- <nsthread: 0x7f9c5b6155e0="">{number = 2, name = (null)}<br>2016-07-28 10:58:05.943 GCD[17694:1357551] download3- <nsthread: 0x7f9c5b551df0="">{number = 4, name = (null)}<br>2016-07-28 10:58:05.942 GCD[17694:1357550] download2- <nsthread: 0x7f9c5b548b30="">{number = 3, name = (null)}<br>可以看出队列开启了三条子线程区分别执行三个任务, 队列中的任务是并发执行的. 但是在这里有个注意点:</nsthread:></nsthread:></nsthread:></p>
+<p>并不是说有多少任务GCD 就会开启多少条线程, 具体开启几条线程是不确定的, 这个是由系统决定的.<br>异步函数和串行队列<br>同样是三个任务,看执行效果</p>
+<ul>
+<li><p>(void)asyncSerial {</p>
+<p>  dispatch_queue_t queue = dispatch_queue_create(“download”, DISPATCH_QUEUE_SERIAL);</p>
+<p>  dispatch_async(queue, ^{</p>
+<pre><code>NSLog(@&quot;download1- %@&quot;, [NSThread currentThread]);
+</code></pre><p>  });</p>
+<p>  dispatch_async(queue, ^{</p>
+<pre><code>NSLog(@&quot;download2- %@&quot;, [NSThread currentThread]);
+</code></pre><p>  });</p>
+<p>  dispatch_async(queue, ^{</p>
+<pre><code>NSLog(@&quot;download3- %@&quot;, [NSThread currentThread]);
+</code></pre><p>  });<br>}<br>打印结果</p>
+</li>
+</ul>
+<p>2016-07-28 11:08:08.933 GCD[18241:1363508] download1- <nsthread: 0x7f80c0f11330="">{number = 2, name = (null)}<br>2016-07-28 11:08:08.934 GCD[18241:1363508] download2- <nsthread: 0x7f80c0f11330="">{number = 2, name = (null)}<br>2016-07-28 11:08:08.934 GCD[18241:1363508] download3- <nsthread: 0x7f80c0f11330="">{number = 2, name = (null)}<br>队列只开启了一条子线程, 去一个接着一个任务去执行.<br>这种方式对任务的执行效率没有任何提高.</nsthread:></nsthread:></nsthread:></p>
+<p>异步函数和主队列<br>代码:</p>
+<ul>
+<li><p>(void)asyncMain {</p>
+<p>  dispatch_queue_t queue = dispatch_get_main_queue();</p>
+<p>  dispatch_async(queue, ^{</p>
+<pre><code>NSLog(@&quot;download1- %@&quot;, [NSThread currentThread]);
+</code></pre><p>  });</p>
+<p>  dispatch_async(queue, ^{</p>
+<pre><code>NSLog(@&quot;download2- %@&quot;, [NSThread currentThread]);
+</code></pre><p>  });</p>
+<p>  dispatch_async(queue, ^{</p>
+<pre><code>NSLog(@&quot;download3- %@&quot;, [NSThread currentThread]);
+</code></pre><p>  });</p>
+</li>
+</ul>
+<p>}<br>打印结果:</p>
+<p>2016-07-28 11:55:12.710 GCD[20775:1389553] download1- <nsthread: 0x7fc4ea7033b0="">{number = 1, name = main}<br>2016-07-28 11:55:12.712 GCD[20775:1389553] download2- <nsthread: 0x7fc4ea7033b0="">{number = 1, name = main}<br>2016-07-28 11:55:12.712 GCD[20775:1389553] download3- <nsthread: 0x7fc4ea7033b0="">{number = 1, name = main}<br>主队列所有的任务确实是在主线程执行的, 虽然是异步函数, 但也不会开启线程.</nsthread:></nsthread:></nsthread:></p>
+<p>各种队列执行效果总结<br>直接在 Excel 里做了个表</p>
+<p>总结: GCD 里, 非主队列情况下只有异步函数才会开启新线程, 此时如果是并发队列, 会开启多条线程,如果是串行队列, 只会开启一条线程, 其他情况下(包括主队列) 都不会开启新线程,并且是串行执行任务.<br>GCD 线程间通信<br>GCD 线程间通信相对来说是比较简单的, 直接使用嵌套就可以了.</p>
+<pre><code>// 开启子线程下载图片
+// dispatch_sync 和 dispatch_async 两者效果一样,因为是在子线程下载的
+dispatch_async(dispatch_get_global_queue(0, 0), ^{
+    // 网络图片 url
+    NSURL *url = [NSURL URLWithString:@&quot;http://pic12.nipic.com/20110114/6621051_221433460330_2.jpg&quot;];
+
+    // 下载二进制数据到本地
+    NSData *data = [NSData dataWithContentsOfURL:url];
+
+    // 获取图片
+    UIImage *image = [[UIImage alloc] initWithData:data];
+
+    // 回到主线程刷新 UI 图片
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.imageView.image = image;
+    });
+
+});
+</code></pre><p>这样就能实现在子线程下载图片,回到主线程刷新 UI 并设置图片</p>
+<p>GCD 常用函数<br>delay 延迟操作<br>先看前两种方法</p>
+<p>NSLog(@”—–start—–”);</p>
+<pre><code>// 延迟方法 第一种
+[self performSelector:@selector(task) withObject:nil afterDelay:3.0];
+
+// 第二种
+//[NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(task) userInfo:nil repeats:YES];
+</code></pre><p>方法实现:</p>
+<ul>
+<li>(void)task {<br>  NSLog(@”task-%@”, [NSThread currentThread]);<br>}<br>打印结果是一样的</li>
+</ul>
+<p>2016-07-28 13:27:16.779 GCD 常用函数[25917:1453136] —–start—–<br>2016-07-28 13:27:19.782 GCD 常用函数[25917:1453136] task-<nsthread: 0x7fa1ca604cf0="">{number = 1, name = main}<br>只不过 NSTimer 会循环打印</nsthread:></p>
+<p>用 GCD 会更简单一些</p>
+<p>dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{<br>        NSLog(@”GCD-%@”, [NSThread currentThread]);<br>    });<br>不需要额外写其他方法, 在 block 里直接声明要执行的任务就可以了.</p>
+<p>2016-07-28 13:30:20.043 GCD 常用函数[26131:1456661] —–start—–<br>2016-07-28 13:30:23.342 GCD 常用函数[26131:1456661] GCD-<nsthread: 0x7fe4687013f0="">{number = 1, name = main}<br>也能达到延迟操作的作用, 此时是默认在主线程中执行的 . GCD 可以修改任务任务执行所在的线程.</nsthread:></p>
+<p>dispatch_queue_t queue = dispatch_get_global_queue(0, 0);</p>
+<pre><code>dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), queue, ^{
+    NSLog(@&quot;GCD-%@&quot;, [NSThread currentThread]);
+});
+</code></pre><p>此时的执行效果</p>
+<p>2016-07-28 13:33:57.186 GCD 常用函数[26332:1459149] —–start—–<br>2016-07-28 13:34:00.188 GCD 常用函数[26332:1459321] GCD-<nsthread: 0x7f90c37146b0="">{number = 2, name = (null)}<br>可以看到任务是在子线程中执行的.</nsthread:></p>
+<p>once 一次性执行<br>直接上代码</p>
+<pre><code>static dispatch_once_t onceToken;
+dispatch_once(&amp;onceToken, ^{
+    NSLog(@&quot;once - %@&quot;, [NSThread currentThread]);
+});
+</code></pre><p>打印结果:</p>
+<p>2016-07-28 13:37:36.106 GCD 常用函数[26532:1461714] once - <nsthread: 0x7fead2e01670="">{number = 1, name = main}<br>之后就不会再运行了, 它是在整个运行程序中只会执行一次, GCD 的一次性执行代码一般都是用在单例设计模式中.保证全局只有一个对象实例.</nsthread:></p>
+<p>GCD 栅栏函数<br>在异步函数中控制任务执行的顺序, 只有当栅栏函数执行完毕之后才会执行后面的任务.</p>
+<p>注意:栅栏函数不能使用全局并发队列<br>依然不善表达,直接上代码, 为了能看出效果, 让每个任务都执行10次:</p>
+<pre><code>// 创建并发队列
+dispatch_queue_t queue = dispatch_queue_create(&quot;aaa&quot;, DISPATCH_QUEUE_CONCURRENT);
+
+// 异步函数
+dispatch_async(queue, ^{
+    for (int i = 0; i &lt; 10; ++i) {
+        NSLog(@&quot;download1 - %@&quot;, [NSThread currentThread]);
+    }
+});
+
+dispatch_async(queue, ^{
+    for (int i = 0; i &lt; 10; ++i) {
+        NSLog(@&quot;download2 - %@&quot;, [NSThread currentThread]);
+    }
+});
+
+// 栅栏函数
+dispatch_barrier_async(queue, ^{
+    NSLog(@&quot;++++++++++++++++++++++++++++++++++++++++&quot;);
+});
+
+dispatch_async(queue, ^{
+    for (int i = 0; i &lt; 10; ++i) {
+        NSLog(@&quot;download3 - %@&quot;, [NSThread currentThread]);
+    }
+});
+</code></pre><p>执行结果:</p>
+<p>只有在栅栏函数前面的任务全部执行完毕后, 才会执行后面的任务.</p>
+<p>GCD 的 apply (快速迭代)<br>迭代: 也就是 遍历<br>之前我们用的最多的就是 for 循环区遍历10000次任务, 接下来我们就对比一下两者有什么区别, 为了看出效果, 都加上耗时计算<br>首先是 for 循环</p>
+<pre><code>NSDate* tmpStartData = [NSDate date];
+
+for (int i = 0; i &lt; 10000; ++i) {
+    NSLog(@&quot;for- %d -- %@&quot;, i, [NSThread currentThread]);
+}
+
+double deltaTime = [[NSDate date] timeIntervalSinceDate:tmpStartData];
+NSLog(@&quot;for 耗时 = %f&quot;, deltaTime);
+</code></pre><p>运行结果:</p>
+<p>for 循环用时约 10.5秒, 而且全部是在主线程中执行的</p>
+<p>接着用 GCD 的快速迭代</p>
+<pre><code>NSDate* tmpStartData = [NSDate date];
+
+/*
+ 第一个参数: 迭代次数
+ 第二个参数: 线程队列(并发队列)
+ 第三个参数: index 索引
+ */
+dispatch_apply(10000, dispatch_get_global_queue(0, 0), ^(size_t index) {
+    NSLog(@&quot;GCD- %zd -- %@&quot;, index, [NSThread currentThread]);
+});
+
+double deltaTime = [[NSDate date] timeIntervalSinceDate:tmpStartData];
+NSLog(@&quot;GCD 耗时 = %f&quot;, deltaTime);
+</code></pre><p>运行结果</p>
+<p>从上面两张图可以看出, GCD 快速迭代的是开启了子线程去执行的,而且主线程也参与了, 由于不是一个线程, 所以迭代也不是按顺序的. 最后,用时5.08秒, 明显快于 for 循环遍历.</p>
+<p>GCD 队列组<br>队列组的作用: 当执行队列组通知模块时能保证放进队列组里的任务全部执行完毕了(之前那篇iOS - GCD 编程里也有类似介绍,不过那个是对 GCD 封装过的方法)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">// 创建队列</div><div class="line">dispatch_queue_t queue = dispatch_get_global_queue(0, 0);</div><div class="line"></div><div class="line">// 创建队列组</div><div class="line">dispatch_group_t group = dispatch_group_create();</div><div class="line"></div><div class="line">//队列组异步函数执行任务</div><div class="line">dispatch_group_async(group, queue, ^&#123;</div><div class="line">    NSLog(@&quot;任务1 -- %@&quot;, [NSThread currentThread]);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">dispatch_group_async(group, queue, ^&#123;</div><div class="line">    NSLog(@&quot;任务2 -- %@&quot;, [NSThread currentThread]);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">dispatch_group_async(group, queue, ^&#123;</div><div class="line">    NSLog(@&quot;任务3 -- %@&quot;, [NSThread currentThread]);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">// 队列组拦截通知模块(内部本身是异步执行的,不会阻塞线程)</div><div class="line">dispatch_group_notify(group, queue, ^&#123;</div><div class="line">    NSLog(@&quot;------队列租任务执行完毕-------&quot;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>执行效果:</p>
+<p>关于 GCD 的相关知识点基本总结完毕, 下篇文章接着总结 NSOperation 的相关知识点</p>
+<p>文／张张张小烦（简书作者）<br>原文链接：<a href="http://www.jianshu.com/p/905796f91f21" target="_blank" rel="external">http://www.jianshu.com/p/905796f91f21</a><br>著作权归作者所有，转载请联系作者获得授权，并标注“简书作者”。</p>
+</the>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/04/07/支付宝集成流程/">支付宝集成流程</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">黄家斌</a></p>
+        <p><span>发布时间:</span>2016-04-07, 22:31:18</p>
+        <p><span>最后更新:</span>2016-08-02, 22:55:44</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/04/07/支付宝集成流程/" title="支付宝集成流程">http://huangjiabin.com.cn/2016/04/07/支付宝集成流程/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://huangjiabin.com.cn/2016/04/07/支付宝集成流程/　　作者: 黄家斌" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2016/05/07/iOS 中KVC、KVO、NSNotification、delegate 总结及区别/">
+                    支付宝集成流程
+                </a>
+            </div>
+        
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"支付宝集成流程　| hjb_iOS的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2016/05/07/iOS 中KVC、KVO、NSNotification、delegate 总结及区别/" title="上一篇: 支付宝集成流程">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/05/07/iOS 中KVC、KVO、NSNotification、delegate 总结及区别/">支付宝集成流程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/07/支付宝集成流程/">支付宝集成流程</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2013-2016 黄家斌
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
